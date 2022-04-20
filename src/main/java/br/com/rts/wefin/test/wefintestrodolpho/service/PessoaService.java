@@ -1,6 +1,7 @@
 package br.com.rts.wefin.test.wefintestrodolpho.service;
 
 import br.com.rts.wefin.test.wefintestrodolpho.entity.Pessoa;
+import br.com.rts.wefin.test.wefintestrodolpho.enums.TipoIdentificadorEnum;
 import br.com.rts.wefin.test.wefintestrodolpho.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,13 @@ public class PessoaService {
     private PessoaRepository repository;
 
     public Pessoa createPessoa(Pessoa pessoa) {
+
+        if (pessoa.getIdentificador().length() == 11)
+            pessoa.setTipoIdentificador(TipoIdentificadorEnum.CPF);
+
+        if (pessoa.getIdentificador().length() == 14)
+            pessoa.setTipoIdentificador(TipoIdentificadorEnum.CNPJ);
+
         return repository.save(pessoa);
     }
 
