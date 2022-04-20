@@ -21,7 +21,7 @@ public class PessoaService {
 
     public Pessoa updatePessoa(Long idPessoa, Pessoa pessoa) throws ValidationException {
         if (repository.existsById(idPessoa)){
-//            pessoa.setId(idPessoa);
+            pessoa.setId(idPessoa);
             return repository.save(pessoa);
         }
 
@@ -30,11 +30,10 @@ public class PessoaService {
 
     public void deletePessoa(Long idPessoa) throws ValidationException {
 
-        if (repository.existsById(idPessoa)){
+        if (repository.existsById(idPessoa))
             repository.deleteById(idPessoa);
-        }
-
-        throw new ValidationException("Não foi possível encontrar a pessoa com este código!");
+        else
+            throw new ValidationException("Não foi possível encontrar a pessoa com este código!");
     }
 
     public List<Pessoa> getAllPessoa() {
