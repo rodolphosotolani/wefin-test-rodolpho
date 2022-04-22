@@ -1,22 +1,18 @@
  package br.com.rts.wefin.test.wefintestrodolpho.controller;
 
-import br.com.rts.wefin.test.wefintestrodolpho.controller.request.PessoaRequest;
-import br.com.rts.wefin.test.wefintestrodolpho.controller.response.PessoaResponse;
-import br.com.rts.wefin.test.wefintestrodolpho.entity.Pessoa;
-import br.com.rts.wefin.test.wefintestrodolpho.mapper.PessoaMapper;
-import br.com.rts.wefin.test.wefintestrodolpho.service.PessoaService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+ import br.com.rts.wefin.test.wefintestrodolpho.controller.request.PessoaRequest;
+ import br.com.rts.wefin.test.wefintestrodolpho.controller.response.PessoaResponse;
+ import br.com.rts.wefin.test.wefintestrodolpho.entity.Pessoa;
+ import br.com.rts.wefin.test.wefintestrodolpho.mapper.PessoaMapper;
+ import br.com.rts.wefin.test.wefintestrodolpho.service.PessoaService;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.http.ResponseEntity;
+ import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import javax.xml.bind.ValidationException;
-import java.util.List;
-import java.util.Optional;
+ import javax.validation.Valid;
+ import javax.xml.bind.ValidationException;
+ import java.util.List;
+ import java.util.Optional;
 
 @RestController
 @RequestMapping("/pessoas")
@@ -54,12 +50,12 @@ public class PessoaController {
     }
 
     @GetMapping("/{idPessoa}")
-    @ApiOperation(value = "Busca uma Pessoa por id")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Encontrado a pessoa", response = PessoaResponse.class),
-            @ApiResponse(code = 400, message = "Id fornecido é inválido!"),
-            @ApiResponse(code = 404, message = "Pessoa não encontrada!")
-    })
+//    @ApiOperation(value = "Busca uma Pessoa por id")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "Encontrado a pessoa", response = PessoaResponse.class),
+//            @ApiResponse(code = 400, message = "Id fornecido é inválido!"),
+//            @ApiResponse(code = 404, message = "Pessoa não encontrada!")
+//    })
     public ResponseEntity<PessoaResponse> getPessoaById(@PathVariable Long idPessoa) {
 
         Optional<Pessoa> optionalPessoa = service.getPessoaById(idPessoa);
