@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  postgres-compose:
+    image: postgres
+    container_name: postgresdb
+    environment:
+      - POSTGRES_USER=postgresdb
+      - POSTGRES_PASSWORD=postgresdb
+      - POSTGRES_DB=wefintestdb
+    ports:
+      - "5432:5432"
+    networks:
+      - application-network
+
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "rt.sotolani@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin123"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres-compose
+    networks:
+      - application-network
+
+  wefin-test-rodolpho:
+    image: rtsotolani/wefintest
+    container_name: wefintest
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-compose
+      - pgadmin-compose
+    networks:
+      - application-network
+
+networks:
+  application-network:
+    driver: bridge
