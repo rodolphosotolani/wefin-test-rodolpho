@@ -18,8 +18,8 @@ import javax.xml.bind.ValidationException;
 import java.util.List;
 import java.util.Optional;
 
+@RestController
 @RequestMapping("/pessoas")
-@Controller
 public class PessoaController {
 
     @Autowired
@@ -70,7 +70,7 @@ public class PessoaController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<List<PessoaResponse>> getAllPessoa() {
 
         List<Pessoa> pessoaList = service.getAllPessoa();
